@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <SPI.h>
-#include <Ethernet.h>
+#include <UIPEthernet.h>
 
 class RestClient {
 
@@ -21,9 +21,9 @@ class RestClient {
     void setContentType(const char*);
 
     // GET path
-    int get(const char*);
+//    int get(const char*);
     // GET path and response
-    int get(const char*, String*);
+//    int get(const char*, String*);
 
     // POST path and body
     int post(const char* path, const char* body);
@@ -31,18 +31,18 @@ class RestClient {
     int post(const char* path, const char* body, String*);
 
     // PUT path and body
-    int put(const char* path, const char* body);
+//    int put(const char* path, const char* body);
     // PUT path and body and response
-    int put(const char* path, const char* body, String*);
+//    int put(const char* path, const char* body, String*);
 
     // DELETE path
-    int del(const char*);
+//    int del(const char*);
     // DELETE path and body
-    int del(const char*, const char*);
+//    int del(const char*, const char*);
     // DELETE path and response
-    int del(const char*, String*);
+//    int del(const char*, String*);
     // DELETE path and body and response
-    int del(const char*, const char*, String*);
+//    int del(const char*, const char*, String*);
 
   private:
     EthernetClient client;

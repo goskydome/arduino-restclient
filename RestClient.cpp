@@ -12,14 +12,14 @@ RestClient::RestClient(const char* _host){
   host = _host;
   port = 80;
   num_headers = 0;
-  contentType = "x-www-form-urlencoded";	// default
+  contentType = "application/json";	// default
 }
 
 RestClient::RestClient(const char* _host, int _port){
   host = _host;
   port = _port;
   num_headers = 0;
-  contentType = "x-www-form-urlencoded";	// default
+  contentType = "application/json";	// default
 }
 
 void RestClient::dhcp(){
@@ -38,14 +38,14 @@ int RestClient::begin(byte mac[]){
 }
 
 // GET path
-int RestClient::get(const char* path){
-  return request("GET", path, NULL, NULL);
-}
+//int RestClient::get(const char* path){
+//  return request("GET", path, NULL, NULL);
+//}
 
 //GET path with response
-int RestClient::get(const char* path, String* response){
-  return request("GET", path, NULL, response);
-}
+//int RestClient::get(const char* path, String* response){
+//  return request("GET", path, NULL, response);
+//}
 
 // POST path and body
 int RestClient::post(const char* path, const char* body){
@@ -58,34 +58,34 @@ int RestClient::post(const char* path, const char* body, String* response){
 }
 
 // PUT path and body
-int RestClient::put(const char* path, const char* body){
-  return request("PUT", path, body, NULL);
-}
+//int RestClient::put(const char* path, const char* body){
+//  return request("PUT", path, body, NULL);
+//}
 
 // PUT path and body with response
-int RestClient::put(const char* path, const char* body, String* response){
-  return request("PUT", path, body, response);
-}
+//int RestClient::put(const char* path, const char* body, String* response){
+//  return request("PUT", path, body, response);
+//}
 
 // DELETE path
-int RestClient::del(const char* path){
-  return request("DELETE", path, NULL, NULL);
-}
+//int RestClient::del(const char* path){
+//  return request("DELETE", path, NULL, NULL);
+//}
 
 // DELETE path and response
-int RestClient::del(const char* path, String* response){
-  return request("DELETE", path, NULL, response);
-}
+//int RestClient::del(const char* path, String* response){
+//  return request("DELETE", path, NULL, response);
+//}
 
 // DELETE path and body
-int RestClient::del(const char* path, const char* body ){
-  return request("DELETE", path, body, NULL);
-}
+//int RestClient::del(const char* path, const char* body ){
+//  return request("DELETE", path, body, NULL);
+//}
 
 // DELETE path and body with response
-int RestClient::del(const char* path, const char* body, String* response){
-  return request("DELETE", path, body, response);
-}
+//int RestClient::del(const char* path, const char* body, String* response){
+//  return request("DELETE", path, body, response);
+//}
 
 void RestClient::write(const char* string){
   HTTP_DEBUG_PRINT(string);
