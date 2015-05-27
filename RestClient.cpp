@@ -25,7 +25,7 @@ RestClient::RestClient(const char* _host, int _port){
 void RestClient::dhcp(){
   byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
   if (begin(mac) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
+    Serial.println(F("Failed to configure Ethernet using DHCP"));
   }
   //give it time to initialize
   delay(1000);
@@ -106,11 +106,7 @@ void RestClient::setContentType(const char* contentTypeValue){
 int RestClient::request(const char* method, const char* path,
                   const char* body, String* response){
 
-  HTTP_DEBUG_PRINT("HTTP: connect\n");
-
   if(client.connect(host, port)){
-    HTTP_DEBUG_PRINT("HTTP: connected\n");
-    HTTP_DEBUG_PRINT("REQUEST: \n");
     // Make a HTTP request line:
     write(method);
     write(" ");
@@ -146,20 +142,16 @@ int RestClient::request(const char* method, const char* path,
     //make sure you write all those bytes.
     delay(100);
 
-    HTTP_DEBUG_PRINT("HTTP: call readResponse\n");
+
     int statusCode = readResponse(response);
-    HTTP_DEBUG_PRINT("HTTP: return readResponse\n");
 
     //cleanup
-    HTTP_DEBUG_PRINT("HTTP: stop client\n");
     num_headers = 0;
     client.stop();
     delay(50);
-    HTTP_DEBUG_PRINT("HTTP: client stopped\n");
 
     return statusCode;
   }else{
-    HTTP_DEBUG_PRINT("HTTP Connection failed\n");
     return 0;
   }
 }
@@ -176,20 +168,14 @@ int RestClient::readResponse(String* response) {
   int code = 0;
 
   if(response == NULL){
-    HTTP_DEBUG_PRINT("HTTP: NULL RESPONSE POINTER: \n");
   }else{
-    HTTP_DEBUG_PRINT("HTTP: NON-NULL RESPONSE POINTER: \n");
   }
 
-  HTTP_DEBUG_PRINT("HTTP: RESPONSE: \n");
   while (client.connected()) {
-    HTTP_DEBUG_PRINT(".");
 
     if (client.available()) {
-      HTTP_DEBUG_PRINT(",");
 
       char c = client.read();
-      HTTP_DEBUG_PRINT(c);
 
       if(c == ' ' && !inStatus){
         inStatus = true;
@@ -226,6 +212,5 @@ int RestClient::readResponse(String* response) {
     }
   }
 
-  HTTP_DEBUG_PRINT("HTTP: return readResponse3\n");
   return code;
 }
